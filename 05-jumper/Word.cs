@@ -1,16 +1,27 @@
 using System;
+using System.Collections.Generic;
 
 namespace _05_jumper
 {
-    class Word
+    public class Word
     {
-        Random r = new Random();
-
-        string[] words = {"man", "rat", "cow", "chicken"};
-
+        public List<string> _words = new List<string> 
+        {
+            "man",
+            "rat",
+            "cow",
+            "chicken"
+        };
+        
+        public Word()
+        {
+            
+        }
+        
         public string RandomWord()
         {
-            string randomWord = (words[r.Next(0, words.Length)]);
+            Random r = new Random();
+            string randomWord = (_words[r.Next(0, _words.Count)]);
             return randomWord;
         }
     }
