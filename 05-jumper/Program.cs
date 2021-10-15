@@ -7,7 +7,8 @@ namespace _05_jumper
         static void Main(string[] args)
         {
             Console.WriteLine("Starting point for the Jumper project.");
-            Console.WriteLine("Adding my branch - tskalka");
+            Director theDirector = new Director();
+            theDirector.StartGame();
         }
     }
 }
