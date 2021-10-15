@@ -2,7 +2,7 @@ using System;
 
 namespace _05_jumper
 {
-    public class Jumper
+    public class User_Service
     {
         
     }
