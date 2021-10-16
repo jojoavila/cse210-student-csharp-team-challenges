@@ -15,6 +15,8 @@ namespace _05_jumper
 
         /// <summary>
         /// This method starts the game and continues running until it is finished.
+        /// Calls the RandomWord function and chooses a random secret word from the list
+        /// that will be used in the game
         /// </summary>
         public void StartGame()
         {
