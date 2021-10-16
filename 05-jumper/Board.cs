@@ -8,7 +8,7 @@ namespace _05_jumper
     /// Also stores the amount of wrong guesses
     /// This class also updates the board based on the amount of wrong guesses.
     /// </summary>
-    class Board
+    public class Board
     {
         
         public List<string> STATIC_BOARD = new List<string> { 
@@ -19,8 +19,11 @@ namespace _05_jumper
         };
 
         public List<string> _paracuteList = new List<string>();
-        public int _wrongGuesses;    
-
+           
+        public Board()
+        {
+            
+        }
         /// <summary>
         /// The generateBoard function creates a new board state for a new game instance.
         /// clears the previous list(board) and adds the board to an empty list
@@ -38,16 +41,20 @@ namespace _05_jumper
         }
 
         
+
+
+
         /// <summary>
         /// The displayBoard function will update the board with incorrect guesses/
         /// also keeps track of those incorrect guesses and shows the game over screen when 
         /// incorrect guesses reaches 4
         /// </summary>
-        public void displayBoard() {
-            _wrongGuesses = 3;
+        public void displayBoard(int wrongGuesses, string coveredWord) {
+            
+            Console.WriteLine(coveredWord);
 
-            if (_wrongGuesses < 4) {
-                for (int i = 0; i < _wrongGuesses; i++) {
+            if (wrongGuesses < 4) {
+                for (int i = 0; i < wrongGuesses; i++) {
                     _paracuteList.RemoveAt(0);
                 }
 
