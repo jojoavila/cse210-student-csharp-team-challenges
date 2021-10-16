@@ -6,11 +6,14 @@ namespace _05_jumper
     {
         public bool _keepPlaying;
         public Word _word;
-        
+        public Board _board;
+
         public Director()
         {
             _keepPlaying = true;
             _word = new Word();
+            _board = new Board();
+            _board.generateBoard();
         }
 
         /// <summary>
@@ -31,8 +34,13 @@ namespace _05_jumper
        
         public void GetInputs()
         {
-            string w = _word.RandomWord();
-            Console.WriteLine(w);
+            // debug code
+            Console.WriteLine(_word._word);
+
+            _board.displayBoard(0, _word._coveredWord);
+
+            Console.Write("Guess a letter [a-z]: ");
+            string letter = Console.ReadLine();
         }
 
        
