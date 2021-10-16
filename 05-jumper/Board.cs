@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace _05_jumper
 {
+    /// <summary>
+    /// This class is responsible for creating a new board.
+    /// Also stores the amount of wrong guesses
+    /// This class also updates the board based on the amount of wrong guesses.
+    /// </summary>
     class Board
     {
+        
         public List<string> STATIC_BOARD = new List<string> { 
             "  /|\\  ",
             "  / \\  ",
@@ -14,6 +20,12 @@ namespace _05_jumper
 
         public List<string> _paracuteList = new List<string>();
         public int _wrongGuesses;    
+
+        /// <summary>
+        /// The generateBoard function creates a new board state for a new game instance.
+        /// clears the previous list(board) and adds the board to an empty list
+        ///
+        /// </summary>
 
         public void generateBoard() {
             _paracuteList.Clear();
@@ -25,6 +37,12 @@ namespace _05_jumper
             _paracuteList.Add("   0   ");
         }
 
+        
+        /// <summary>
+        /// The displayBoard function will update the board with incorrect guesses/
+        /// also keeps track of those incorrect guesses and shows the game over screen when 
+        /// incorrect guesses reaches 4
+        /// </summary>
         public void displayBoard() {
             _wrongGuesses = 3;
 
