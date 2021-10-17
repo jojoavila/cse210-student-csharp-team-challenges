@@ -15,7 +15,18 @@ namespace _05_jumper
             "man",
             "rat",
             "cow",
-            "chicken"
+            "chicken",
+            "house",
+            "car",
+            "cave",
+            "computer",
+            "programming",
+            "cheese",
+            "mouse",
+            "light",
+            "carrot",
+            "block",
+            "pen"
         };
 
         public string _randomWord;
