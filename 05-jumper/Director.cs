@@ -9,7 +9,6 @@ namespace _05_jumper
         public Board _board;
         public Jumper _jumper;
         public bool _isRightGuess;
-
         public User_Service _userService;
         public char _letter;
 
@@ -45,9 +44,7 @@ namespace _05_jumper
         public void GetInputs()
         {
             // debug code
-            Console.WriteLine(_word.GetRandomWord());
-
-            
+            //Console.WriteLine(_word.GetRandomWord());
 
             string prompt = "Guess a letter [a-z]: ";
             _letter = _userService.GetLetterGuess(prompt);
@@ -56,15 +53,17 @@ namespace _05_jumper
        
         public void DoUpdates()
         {
+            // Updates the covered word
             _isRightGuess = _jumper.CheckLetter(_word.GetRandomWord(), _letter);
             if (_isRightGuess)
             {
                 _word.replaceUnderScore(_letter);
             }
 
-            Console.WriteLine(_jumper.GetWrongGuesses());
+            // debug code
+            //Console.WriteLine(_jumper.GetWrongGuesses());
 
-
+            // Updates the game state
             if (!_jumper.IsAlive() || _word.GetRandomWord() == _word.GetCoveredWord())
             {
                 _keepPlaying = false;
@@ -74,8 +73,10 @@ namespace _05_jumper
        
         public void DoOutputs()
         {
+            // New board is displayed
             _isRightGuess = _board.displayBoard(_jumper.GetWrongGuesses(), _word.GetCoveredWord(), _isRightGuess);
 
+            // In the result of an end state a different message will appear
             _userService.EndMessage(_jumper.IsAlive(), _word.GetRandomWord(), _word.GetCoveredWord());
         }
     }

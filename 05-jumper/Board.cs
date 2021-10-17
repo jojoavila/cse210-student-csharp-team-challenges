@@ -10,8 +10,8 @@ namespace _05_jumper
     /// </summary>
     public class Board
     {
-        
-        public List<string> STATIC_BOARD = new List<string> { 
+        public List<string> STATIC_BOARD = new List<string> 
+        { 
             "  /|\\  ",
             "  / \\  ",
             "        ",
@@ -24,12 +24,11 @@ namespace _05_jumper
         {
             generateBoard();
         }
+
         /// <summary>
         /// The generateBoard function creates a new board state for a new game instance.
         /// clears the previous list(board) and adds the board to an empty list
-        ///
         /// </summary>
-
         public void generateBoard() {
             _paracuteList.Clear();
 
@@ -42,9 +41,8 @@ namespace _05_jumper
 
 
         /// <summary>
-        /// The displayBoard function will update the board with incorrect guesses/
-        /// also keeps track of those incorrect guesses and shows the game over screen when 
-        /// incorrect guesses reaches 4
+        /// The displayBoard function will update the board using incorrect guesses
+        /// and will display the dead jumper at a game over screen.
         /// </summary>
         public bool displayBoard(int wrongGuesses, string coveredWord, bool isRightGuess) {
             
@@ -52,7 +50,9 @@ namespace _05_jumper
 
             if (wrongGuesses < 4) 
             {
-                Console.WriteLine($"Before chute delete: {wrongGuesses}");
+                // debug code
+                //Console.WriteLine($"Before chute delete: {wrongGuesses}");
+                
                 if (!isRightGuess)
                 {
                     _paracuteList.RemoveAt(0);
