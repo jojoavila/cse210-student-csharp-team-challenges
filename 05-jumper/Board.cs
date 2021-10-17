@@ -22,7 +22,7 @@ namespace _05_jumper
            
         public Board()
         {
-            
+            generateBoard();
         }
         /// <summary>
         /// The generateBoard function creates a new board state for a new game instance.
@@ -40,36 +40,40 @@ namespace _05_jumper
             _paracuteList.Add("   0   ");
         }
 
-        
-
-
 
         /// <summary>
         /// The displayBoard function will update the board with incorrect guesses/
         /// also keeps track of those incorrect guesses and shows the game over screen when 
         /// incorrect guesses reaches 4
         /// </summary>
-        public void displayBoard(int wrongGuesses, string coveredWord) {
+        public bool displayBoard(int wrongGuesses, string coveredWord, bool isRightGuess) {
             
             Console.WriteLine(coveredWord);
 
-            if (wrongGuesses < 4) {
-                for (int i = 0; i < wrongGuesses; i++) {
+            if (wrongGuesses < 4) 
+            {
+                Console.WriteLine($"Before chute delete: {wrongGuesses}");
+                if (!isRightGuess)
+                {
                     _paracuteList.RemoveAt(0);
                 }
 
-                for (int i = 0; i < _paracuteList.Count; i++) {
+                for (int i = 0; i < _paracuteList.Count; i++) 
+                {
                     Console.WriteLine(_paracuteList[i]);
                 }
             }
-            else {
+            else 
+            {
                 Console.WriteLine("   x   ");
             }
 
-            for (int i = 0; i < STATIC_BOARD.Count; i++) {
+            for (int i = 0; i < STATIC_BOARD.Count; i++) 
+            {
                 Console.WriteLine(STATIC_BOARD[i]);
             }
             
+            return true;
         }
     }
 }
