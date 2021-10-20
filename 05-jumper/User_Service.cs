@@ -32,6 +32,7 @@ namespace _05_jumper
             {
                 Console.WriteLine("Congrats! You won!");
             }
+        }
 
         string UserGuess()
         {
