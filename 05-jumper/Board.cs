@@ -8,10 +8,10 @@ namespace _05_jumper
     /// Also stores the amount of wrong guesses
     /// This class also updates the board based on the amount of wrong guesses.
     /// </summary>
-    class Board
+    public class Board
     {
-        
-        public List<string> STATIC_BOARD = new List<string> { 
+        public List<string> STATIC_BOARD = new List<string> 
+        { 
             "  /|\\  ",
             "  / \\  ",
             "        ",
@@ -19,14 +19,16 @@ namespace _05_jumper
         };
 
         public List<string> _paracuteList = new List<string>();
-        public int _wrongGuesses;    
+           
+        public Board()
+        {
+            generateBoard();
+        }
 
         /// <summary>
         /// The generateBoard function creates a new board state for a new game instance.
         /// clears the previous list(board) and adds the board to an empty list
-        ///
         /// </summary>
-
         public void generateBoard() {
             _paracuteList.Clear();
 
@@ -37,32 +39,41 @@ namespace _05_jumper
             _paracuteList.Add("   0   ");
         }
 
-        
-        /// <summary>
-        /// The displayBoard function will update the board with incorrect guesses/
-        /// also keeps track of those incorrect guesses and shows the game over screen when 
-        /// incorrect guesses reaches 4
-        /// </summary>
-        public void displayBoard() {
-            _wrongGuesses = 3;
 
-            if (_wrongGuesses < 4) {
-                for (int i = 0; i < _wrongGuesses; i++) {
+        /// <summary>
+        /// The displayBoard function will update the board using incorrect guesses
+        /// and will display the dead jumper at a game over screen.
+        /// </summary>
+        public bool displayBoard(int wrongGuesses, string coveredWord, bool isRightGuess) {
+            
+            Console.WriteLine(coveredWord);
+
+            if (wrongGuesses < 4) 
+            {
+                // debug code
+                //Console.WriteLine($"Before chute delete: {wrongGuesses}");
+                
+                if (!isRightGuess)
+                {
                     _paracuteList.RemoveAt(0);
                 }
 
-                for (int i = 0; i < _paracuteList.Count; i++) {
+                for (int i = 0; i < _paracuteList.Count; i++) 
+                {
                     Console.WriteLine(_paracuteList[i]);
                 }
             }
-            else {
+            else 
+            {
                 Console.WriteLine("   x   ");
             }
 
-            for (int i = 0; i < STATIC_BOARD.Count; i++) {
+            for (int i = 0; i < STATIC_BOARD.Count; i++) 
+            {
                 Console.WriteLine(STATIC_BOARD[i]);
             }
             
+            return true;
         }
     }
 }

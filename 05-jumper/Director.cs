@@ -6,11 +6,21 @@ namespace _05_jumper
     {
         public bool _keepPlaying;
         public Word _word;
-        
+        public Board _board;
+        public Jumper _jumper;
+        public bool _isRightGuess;
+        public User_Service _userService;
+        public char _letter;
+
         public Director()
         {
-            _keepPlaying = true;
             _word = new Word();
+            _board = new Board();
+            _userService = new User_Service();
+            _jumper = new Jumper();
+            _keepPlaying = true;
+            _letter = ' ';
+            _isRightGuess = true;
         }
 
         /// <summary>
@@ -20,6 +30,8 @@ namespace _05_jumper
         /// </summary>
         public void StartGame()
         {
+            _board.displayBoard(_jumper.GetWrongGuesses(), _word.GetCoveredWord(), _isRightGuess);
+
             while (_keepPlaying)
             {
                 GetInputs();
@@ -31,20 +43,41 @@ namespace _05_jumper
        
         public void GetInputs()
         {
-            string w = _word.RandomWord();
-            Console.WriteLine(w);
+            // debug code
+            //Console.WriteLine(_word.GetRandomWord());
+
+            string prompt = "Guess a letter [a-z]: ";
+            _letter = _userService.GetLetterGuess(prompt);
         }
 
        
         public void DoUpdates()
         {
-            throw new NotImplementedException();
+            // Updates the covered word
+            _isRightGuess = _jumper.CheckLetter(_word.GetRandomWord(), _letter);
+            if (_isRightGuess)
+            {
+                _word.replaceUnderScore(_letter);
+            }
+
+            // debug code
+            //Console.WriteLine(_jumper.GetWrongGuesses());
+
+            // Updates the game state
+            if (!_jumper.IsAlive() || _word.GetRandomWord() == _word.GetCoveredWord())
+            {
+                _keepPlaying = false;
+            }
         }
 
        
         public void DoOutputs()
         {
-            throw new NotImplementedException();
+            // New board is displayed
+            _isRightGuess = _board.displayBoard(_jumper.GetWrongGuesses(), _word.GetCoveredWord(), _isRightGuess);
+
+            // In the result of an end state a different message will appear
+            _userService.EndMessage(_jumper.IsAlive(), _word.GetRandomWord(), _word.GetCoveredWord());
         }
     }
 }
