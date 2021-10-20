@@ -7,6 +7,7 @@ namespace _06_mastermind
         static void Main(string[] args)
         {
             Console.WriteLine("Starting point for the Mastermind project.");
+            
         }
     }
 }
