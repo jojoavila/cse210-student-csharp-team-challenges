@@ -8,6 +8,7 @@ namespace _05_jumper
         {
             Director theDirector = new Director();
             theDirector.StartGame();
+            Console.WriteLine("Brighton");
         }
     }
 }
