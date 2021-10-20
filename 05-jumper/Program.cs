@@ -1,5 +1,5 @@
 
-﻿using System;
+using System;
 
 namespace _05_jumper
 {
