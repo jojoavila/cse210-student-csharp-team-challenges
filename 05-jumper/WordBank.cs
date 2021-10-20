@@ -4,6 +4,6 @@ namespace _05_jumper
 {
     class WordBank
     {
-        
+        // stupid test
     }
 }
