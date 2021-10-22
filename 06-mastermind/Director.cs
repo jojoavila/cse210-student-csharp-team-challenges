@@ -15,7 +15,7 @@ namespace _06_mastermind
         private UserService _userService = new UserService();
         private Roster _roster = new Roster();
 
-        private Move move = null;
+        private Guess move = null;
         private bool _keepPlaying = true;
 
         /// <summary>
@@ -62,6 +62,6 @@ namespace _06_mastermind
         /// </summary>
         private void DoOutputs()
         {
-
+            ///board.iswin()
         }
     }}
