@@ -6,9 +6,6 @@ namespace _06_mastermind
     /// This class abstracts the User interface for the project. In this case
     /// it wraps calls to the Console to display and get information from the user.
     /// 
-    /// In the future it could be modified to other types of Input/Output besides
-    /// the Console, and it could also include checking for valid input, etc.
-    /// 
     /// Stereotype:
     ///     Service Provider, Interfacer
     /// </summary>
