@@ -8,7 +8,7 @@ namespace _06_mastermind
     /// Stereotype:
     ///     Information Holder
     /// </summary>
-    class Move
+    class Guess
     {
         private int _stones;
         private int _pile;
@@ -19,7 +19,7 @@ namespace _06_mastermind
         /// </summary>
         /// <param name="stones">The amount of stones to remove</param>
         /// <param name="pile">The pile to remove them from</param>
-        public Move(int stones, int pile)
+        public Guess(int stones, int pile)
         {
             _stones = stones;
             _pile = pile;
