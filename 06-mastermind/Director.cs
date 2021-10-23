@@ -9,23 +9,22 @@ namespace _06_mastermind
     /// Stereotype:
     ///     Controller
     /// </summary>
-    public class Director
+    class Director
     {
-        private Board _board = new Board();
-        private UserService _userService = new UserService();
-        private Roster _roster = new Roster();
-
-        private Guess move = null;
+        Board _board = new Board();
+        UserService _userService = new UserService();
+        Roster _roster = new Roster();
         private bool _keepPlaying = true;
-
-        /// <summary>
-        /// This method starts the game and continues running until it is finished.
-        /// </summary>
+        private string _code;
+        string _guess = "----";
+        string algo = "****";
+        private string _limit = "--------------------";
+        
         public void StartGame()
         {
             PrepareGame();
 
-            while (_keepPlaying)
+            while(_keepPlaying)
             {
                 GetInputs();
                 DoUpdates();
@@ -33,35 +32,52 @@ namespace _06_mastermind
             }
         }
 
-        /// <summary>
-        /// Performs any initial setup for the game.
-        /// </summary>
         private void PrepareGame()
         {
-
+            _code = _board.RandomCode();
+            for (int i = 0; i < 2; i++)
+            {
+                string prompt = $"Enter a name for player {i + 1}: ";
+                string name = _userService.GetUserInput(prompt);
+                Player player = new Player(name);
+                _roster.AddPlayer(player);
+            }
         }
 
-        /// <summary>
-        /// Get any input needed from the user.
-        /// </summary>
+        
         private void GetInputs()
         {
-            // Display the board
+            Console.WriteLine("");
+            _userService.DisplayText($"{_limit}");
+            Player player1 = _roster.GetPlayer1();
+            Player player2 = _roster.GetPlayer2();
+            _board.DisplayBoard(player1, player2, algo, _guess);
+            
+            _userService.DisplayText($"{_limit}");
+            Player currentPlayer = _roster.GetCurrentPlayer();
+            _userService.DisplayText($"{currentPlayer.GetName()}'s turn: ");
+            _guess = _userService.GetUserInput($"What is your guess? ");
+            
+            Console.WriteLine("");
+
         }
 
-        /// <summary>
-        /// Update any of the actors.
-        /// </summary>
         private void DoUpdates()
         {
-
+            algo = _board.GetHint(_guess);
         }
 
-        /// <summary>
-        /// Display the updated state of the game to the user.
-        /// </summary>
         private void DoOutputs()
         {
-            ///board.iswin()
+            if (_board.IsWin(_guess))
+            {
+                Player winningPlayer = _roster.GetCurrentPlayer();
+                string name = winningPlayer.GetName();
+
+                _userService.DisplayText($"{name} won!");
+                _keepPlaying = false;
+            }
+            _roster.AdvanceNextPlayer();
         }
-    }}
+    }
+}

@@ -13,32 +13,31 @@ namespace _06_mastermind
     class Roster
     {
         private int _currentPlayerIndex = 0;
-        private List<Player> _players = new List<Player>();
+        private List<Player> _player = new List<Player>();
 
-        /// <summary>
-        /// Adds a new player to the game.
-        /// </summary>
-        /// <param name="player">The new player</param>
         public void AddPlayer(Player player)
         {
-            _players.Add(player);
+            _player.Add(player);
         }
 
-        /// <summary>
-        /// Returns the player whose turn it is.
-        /// </summary>
-        /// <returns></returns>
         public Player GetCurrentPlayer()
         {
-            return _players[_currentPlayerIndex];
+            return _player[_currentPlayerIndex];
         }
 
-        /// <summary>
-        /// Advances the current player to be the next one in the roster.
-        /// </summary>
         public void AdvanceNextPlayer()
         {
-            _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.Count;
+            _currentPlayerIndex = (_currentPlayerIndex + 1) % _player.Count;
+        }
+
+        public Player GetPlayer1()
+        {
+            return _player[0];
+        }
+
+        public Player GetPlayer2()
+        {
+            return _player[1];
         }
     }
 }
