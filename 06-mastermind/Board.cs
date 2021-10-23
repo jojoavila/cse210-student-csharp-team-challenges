@@ -2,18 +2,27 @@ using System;
 
 namespace _06_mastermind
 {
-
-
-    // private _secretCode
-    // private _board
-
-
     class Board
     {
+        private int _secretCode;
+        // private _board
         public Board()
         {
+            Random randomGenerator = new Random();
+            _secretCode = randomGenerator.Next(1000, 10000);
+
             //generate code the first time
         }
+
+        private string CodeGeneratorString()
+        {
+            string codeString = Convert.ToString(_secretCode);
+            Console.WriteLine(_secretCode);
+
+            return codeString;
+        }
+
+
     }
 
     //GetHint(Guess, secretCode), update the * with o's or x's: Return a new string.
@@ -32,20 +41,5 @@ namespace _06_mastermind
 
     //DisplayBoard(Hint, lastplayerhint, Player), player names needs brought in from roster and guess, display hint.
     //Josue
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
