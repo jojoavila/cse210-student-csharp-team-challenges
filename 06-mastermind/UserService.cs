@@ -5,6 +5,11 @@ namespace _06_mastermind
     /// <summary>
     /// This class abstracts the User interface for the project. In this case
     /// it wraps calls to the Console to display and get information from the user.
+
+    /// 
+    /// Stereotype:
+    ///     Service Provider, Interfacer
+
     /// </summary>
     public class UserService
     {

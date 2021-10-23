@@ -2,8 +2,15 @@ using System;
 
 namespace _06_mastermind
 {
+
+
+    // private _secretCode
+    // private _board
+
+
     class Board
     {
+
         private string _secretCode;
         // private _board
 
@@ -44,6 +51,12 @@ namespace _06_mastermind
         //
         //    return codeString;
         //}
+
+        public Board()
+        {
+            //generate code the first time
+        }
+
     }
 
     //GetHint(Guess, secretCode), update the * with o's or x's: Return a new string.
@@ -62,5 +75,3 @@ namespace _06_mastermind
 
     //DisplayBoard(Hint, lastplayerhint, Player), player names needs brought in from roster and guess, display hint.
     //Josue
-
-}
