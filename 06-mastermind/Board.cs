@@ -4,15 +4,36 @@ namespace _06_mastermind
 {
 
 
-    // private _secretCode
+    
     // private _board
 
 
     class Board
     {
+        private string _secretCode = "1234";
         public Board()
         {
             //generate code the first time
+        }
+
+        public string GetHint(string guess)
+        {
+            string hint = "****";
+
+            for (int pos = 0; pos < _secretCode.Length; pos++)
+            {
+                // Checks if specific spot is correct
+                if (guess[pos] == _secretCode[pos])
+                {
+                    hint = hint.Remove(pos, 1).Insert(pos, "X");
+                }
+                // Checks if code entry is in the secretCode at all
+                else if (_secretCode.Contains(guess[pos]))
+                {
+                    hint = hint.Remove(pos, 1).Insert(pos, "O");
+                }   
+            }
+            return hint;
         }
     }
 
