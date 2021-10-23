@@ -4,8 +4,9 @@ namespace _06_mastermind
 {
     class Board
     {
-        private int _secretCode;
+        private string _secretCode;
         // private _board
+
         public Board()
         {
             Random randomGenerator = new Random();
@@ -14,15 +15,35 @@ namespace _06_mastermind
             //generate code the first time
         }
 
-        private string CodeGeneratorString()
+        public string GetHint(string guess)
         {
-            string codeString = Convert.ToString(_secretCode);
-            Console.WriteLine(_secretCode);
+            string hint = "****";
 
-            return codeString;
+            for (int pos = 0; pos < _secretCode.Length; pos++)
+            {
+                // Checks if specific spot is correct
+                if (guess[pos] == _secretCode[pos])
+                {
+                    hint = hint.Remove(pos, 1).Insert(pos, "X");
+                }
+                // Checks if code entry is in the secretCode at all
+                else if (_secretCode.Contains(guess[pos]))
+                {
+                    hint = hint.Remove(pos, 1).Insert(pos, "O");
+                }   
+            }
+            return hint;
         }
-
-
+  
+        // Not sure what this function is suppose to be doing.
+        // The global _secretCode is always going to be a string.
+        //private string CodeGeneratorString()
+        //{
+        //    string codeString = Convert.ToString(_secretCode);
+        //    Console.WriteLine(_secretCode);
+        //
+        //    return codeString;
+        //}
     }
 
     //GetHint(Guess, secretCode), update the * with o's or x's: Return a new string.
