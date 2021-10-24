@@ -6,17 +6,21 @@ namespace _06_mastermind
     {
         string _secretCode; 
         UserService _userService = new UserService();
-        Roster _roster = new Roster();
    
-        public string RandomCode()
+        public Board()
         {
-            string numInt;
-            Random ran = new Random();
-            int num = ran.Next(1000,10000);
-            numInt = num.ToString();
-            _secretCode = numInt;
+            RandomCode();
+        }
+
+        public void RandomCode()
+        {
+            Random randNum = new Random();
+            int num = randNum.Next(1000,10000);
+            
+            _secretCode = num.ToString();
+
+            // Debug code --> shows secret code before guessing starts
             Console.WriteLine(_secretCode);
-            return numInt;
         }
 
         public string GetHint(string guess)
@@ -39,10 +43,13 @@ namespace _06_mastermind
             return hint;
         }    
 
-        public void DisplayBoard(Player player1, Player player2, string algo, string guess)
+        public void DisplayBoard(Player player1, Player player2)
         {
-            _userService.DisplayText($"Player {player1.GetName()}: {guess}, {algo}");
-            _userService.DisplayText($"Player {player2.GetName()}: {guess}, {algo}");
+            Console.WriteLine("");
+            Console.WriteLine("--------------------");
+            Console.WriteLine($"Player {player1.GetName()}: {player1.GetGuess()}, {player1.GetHint()}");
+            Console.WriteLine($"Player {player2.GetName()}: {player2.GetGuess()}, {player2.GetHint()}");
+            Console.WriteLine("--------------------");
         }
 
         public bool IsWin(string guess)
