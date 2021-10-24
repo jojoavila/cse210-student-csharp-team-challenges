@@ -15,11 +15,12 @@ namespace _06_mastermind
         UserService _userService = new UserService();
         Roster _roster = new Roster();
         private bool _keepPlaying = true;
-        private string _code;
-        string _guess = "----";
-        string algo = "****";
-        private string _limit = "--------------------";
+        Player _currentPlayer;
         
+
+    /// <summary>
+    /// Starts the game loop and also calls the PrepareGame function to start the game.
+    /// </summary>
         public void StartGame()
         {
             PrepareGame();
@@ -32,52 +33,67 @@ namespace _06_mastermind
             }
         }
 
+    /// <summary>
+    /// Set up code for adding players to the roster
+    /// calls the userService class to accept user input
+    /// also get's current player from roster.
+    /// </summary>
         private void PrepareGame()
         {
-            _code = _board.RandomCode();
+            
             for (int i = 0; i < 2; i++)
             {
                 string prompt = $"Enter a name for player {i + 1}: ";
                 string name = _userService.GetUserInput(prompt);
                 Player player = new Player(name);
                 _roster.AddPlayer(player);
+            
+                _currentPlayer = _roster.GetCurrentPlayer();
             }
         }
 
-        
+    /// <summary>
+    /// Displays the most up to date game board.
+    /// Stores current player's guess within the player itself.
+    /// </summary>
         private void GetInputs()
         {
-            Console.WriteLine("");
-            _userService.DisplayText($"{_limit}");
-            Player player1 = _roster.GetPlayer1();
-            Player player2 = _roster.GetPlayer2();
-            _board.DisplayBoard(player1, player2, algo, _guess);
             
-            _userService.DisplayText($"{_limit}");
-            Player currentPlayer = _roster.GetCurrentPlayer();
-            _userService.DisplayText($"{currentPlayer.GetName()}'s turn: ");
-            _guess = _userService.GetUserInput($"What is your guess? ");
-            
-            Console.WriteLine("");
+            _board.DisplayBoard(_roster.GetPlayer1(), _roster.GetPlayer2());
 
+            _userService.DisplayText($"{_currentPlayer.GetName()}'s turn: ");
+
+            _currentPlayer.SetGuess(_userService.GetUserInput($"What is your guess? "));
+
+            
         }
 
+    /// <summary>
+    /// stores the player's last given hint by calling the board's getHint function
+    /// and the player's getGuess function.
+    /// </summary>
         private void DoUpdates()
         {
-            algo = _board.GetHint(_guess);
+
+            _currentPlayer.SetLastHint(_board.GetHint(_currentPlayer.GetGuess()));
         }
 
+    /// <summary>
+    /// Checks if the player's guess matches the secretCode
+    /// Advances to the next player and sets _currentPlayer as the next player
+    /// </summary>
         private void DoOutputs()
         {
-            if (_board.IsWin(_guess))
+            
+            if (_board.IsWin(_currentPlayer.GetGuess()))
             {
-                Player winningPlayer = _roster.GetCurrentPlayer();
-                string name = winningPlayer.GetName();
-
-                _userService.DisplayText($"{name} won!");
+                _userService.DisplayText($"{_currentPlayer.GetName()} won!");
+                
                 _keepPlaying = false;
             }
+
             _roster.AdvanceNextPlayer();
+            _currentPlayer = _roster.GetCurrentPlayer();
         }
     }
 }
