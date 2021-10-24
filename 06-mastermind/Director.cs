@@ -17,6 +17,10 @@ namespace _06_mastermind
         private bool _keepPlaying = true;
         Player _currentPlayer;
         
+
+    /// <summary>
+    /// Starts the game loop and also calls the PrepareGame function to start the game.
+    /// </summary>
         public void StartGame()
         {
             PrepareGame();
@@ -29,9 +33,14 @@ namespace _06_mastermind
             }
         }
 
+    /// <summary>
+    /// Set up code for adding players to the roster
+    /// calls the userService class to accept user input
+    /// also get's current player from roster.
+    /// </summary>
         private void PrepareGame()
         {
-            // Set up code for adding players to the roster
+            
             for (int i = 0; i < 2; i++)
             {
                 string prompt = $"Enter a name for player {i + 1}: ";
@@ -43,30 +52,39 @@ namespace _06_mastermind
             }
         }
 
-        
+    /// <summary>
+    /// Displays the most up to date game board.
+    /// Stores current player's guess within the player itself.
+    /// </summary>
         private void GetInputs()
         {
-            // Displays the most up to date game board
+            
             _board.DisplayBoard(_roster.GetPlayer1(), _roster.GetPlayer2());
 
             _userService.DisplayText($"{_currentPlayer.GetName()}'s turn: ");
 
-            // Stores current player's guess within the player itself
             _currentPlayer.SetGuess(_userService.GetUserInput($"What is your guess? "));
 
             
         }
 
+    /// <summary>
+    /// stores the player's last given hint by calling the board's getHint function
+    /// and the player's getGuess function.
+    /// </summary>
         private void DoUpdates()
         {
-            // stores the player's last given hint by calling the board's getHint function
-            // and the player's getGuess function.
+
             _currentPlayer.SetLastHint(_board.GetHint(_currentPlayer.GetGuess()));
         }
 
+    /// <summary>
+    /// Checks if the player's guess matches the secretCode
+    /// Advances to the next player and sets _currentPlayer as the next player
+    /// </summary>
         private void DoOutputs()
         {
-            // Checks if the player's guess matches the secretCode
+            
             if (_board.IsWin(_currentPlayer.GetGuess()))
             {
                 _userService.DisplayText($"{_currentPlayer.GetName()} won!");
@@ -74,8 +92,6 @@ namespace _06_mastermind
                 _keepPlaying = false;
             }
 
-            // Advances to the next player and sets _currentPlayer as the next
-            // player
             _roster.AdvanceNextPlayer();
             _currentPlayer = _roster.GetCurrentPlayer();
         }
