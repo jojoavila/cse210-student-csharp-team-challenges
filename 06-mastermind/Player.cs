@@ -12,12 +12,7 @@ namespace _06_mastermind
     class Player
     {
         private string _name;
-        private Guess _move;
 
-        /// <summary>
-        /// Initializes a new player with the provided name.
-        /// </summary>
-        /// <param name="name">The name of the player</param>
         public Player(string name)
         {
             _name = name;
@@ -26,16 +21,6 @@ namespace _06_mastermind
         public string GetName()
         {
             return _name;
-        }
-
-        public void SetMove(Guess move)
-        {
-            _move = move;
-        }
-
-        public Guess GetMove()
-        {
-            return _move;
         }
     }
 }

@@ -13,25 +13,15 @@ namespace _06_mastermind
     /// </summary>
     public class UserService
     {
-        /// <summary>
-        /// Displays the provided text.
-        /// </summary>
-        /// <param name="text">The text to display</param>
         public void DisplayText(string text)
         {
             Console.WriteLine(text);
         }
 
-        /// <summary>
-        /// Gets a string value from the user after displaying the provided prompt text.
-        /// </summary>
-        /// <param name="promptText">The text to display as a prompt</param>
-        /// <returns>The user's response</returns>
-        public string GetStringInput(string promptText)
+        public string GetUserInput(string promprText)
         {
-            Console.Write(promptText);
+            Console.Write(promprText);
             string userInput = Console.ReadLine();
-
             return userInput;
         }
     }

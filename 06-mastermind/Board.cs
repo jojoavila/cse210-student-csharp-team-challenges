@@ -2,24 +2,21 @@ using System;
 
 namespace _06_mastermind
 {
-
-
-    // private _secretCode
-    // private _board
-
-
     class Board
     {
-
-        private string _secretCode;
-        // private _board
-
-        public Board()
+        string _secretCode; 
+        UserService _userService = new UserService();
+        Roster _roster = new Roster();
+   
+        public string RandomCode()
         {
-            Random randomGenerator = new Random();
-            _secretCode = randomGenerator.Next(1000, 10000);
-
-            //generate code the first time
+            string numInt;
+            Random ran = new Random();
+            int num = ran.Next(1000,10000);
+            numInt = num.ToString();
+            _secretCode = numInt;
+            Console.WriteLine(_secretCode);
+            return numInt;
         }
 
         public string GetHint(string guess)
@@ -40,38 +37,23 @@ namespace _06_mastermind
                 }   
             }
             return hint;
-        }
-  
-        // Not sure what this function is suppose to be doing.
-        // The global _secretCode is always going to be a string.
-        //private string CodeGeneratorString()
-        //{
-        //    string codeString = Convert.ToString(_secretCode);
-        //    Console.WriteLine(_secretCode);
-        //
-        //    return codeString;
-        //}
+        }    
 
-        public Board()
+        public void DisplayBoard(Player player1, Player player2, string algo, string guess)
         {
-            //generate code the first time
+            _userService.DisplayText($"Player {player1.GetName()}: {guess}, {algo}");
+            _userService.DisplayText($"Player {player2.GetName()}: {guess}, {algo}");
         }
 
+        public bool IsWin(string guess)
+        {
+            bool win = false;
+
+            if(_secretCode == guess)
+            {
+                win = true;
+            }
+            return win;
+        }
     }
-
-    //GetHint(Guess, secretCode), update the * with o's or x's: Return a new string.
-    //logic: Compare the strings characters for each string. 
-    //return string
-    //Christian
-
-    ///IsWin(Guess,SecretCode) compare the secretCode to user input.
-    // return Bool
-    // Brighton
-
-    //Generatecode, generate random number, 1000-9999. 
-    //Change randomInteger into a string
-    //return newStringCode
-    //Tyler
-
-    //DisplayBoard(Hint, lastplayerhint, Player), player names needs brought in from roster and guess, display hint.
-    //Josue
+}
