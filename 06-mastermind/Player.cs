@@ -12,15 +12,37 @@ namespace _06_mastermind
     class Player
     {
         private string _name;
+        private string _guess = "----";
+        private string _lastHint = "****";
 
         public Player(string name)
         {
             _name = name;
         }
 
+        public void SetGuess(string playerGuess)
+        {
+            _guess = playerGuess;
+        }
+
+        public void SetLastHint(string hint)
+        {
+            _lastHint = hint;
+        }
+
         public string GetName()
         {
             return _name;
+        }
+
+        public string GetGuess()
+        {
+            return _guess;
+        }
+
+        public string GetHint()
+        {
+            return _lastHint;
         }
     }
 }
