@@ -5,11 +5,11 @@ namespace _07_speed
     /// <summary>
     /// A class to represent the food in the game.
     /// </summary>
-    class Food : Actor
+    class Word : Actor
     {
         private int _points;
 
-        public Food()
+        public Word()
         {
             // Use the standard reset method to start the initial food.
             Reset();
