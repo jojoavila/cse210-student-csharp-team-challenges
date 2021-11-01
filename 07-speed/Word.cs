@@ -3,38 +3,25 @@ using System;
 namespace _07_speed
 {
     /// <summary>
-    /// A class to represent the food in the game.
+    /// A class to represent a word in the game.
     /// </summary>
     class Word : Actor
     {
-        private int _points;
-
-        public Word()
+        public Word(string randomWord)
         {
-            // Use the standard reset method to start the initial food.
-            Reset();
-        }
+            Random randNum = new Random();
 
-        public int GetPoints()
-        {
-            return _points;
-        }
+            _text = randomWord;
 
-        /// <summary>
-        /// Sets the food to a random point value from 1-10.
-        /// Also puts it at a random location on the screen.
-        /// </summary>
-        public void Reset()
-        {
-            Random randomGenerator = new Random();
-            _points = randomGenerator.Next(1, 10);
-            _text = _points.ToString();
-
-            int x = randomGenerator.Next(0, Constants.MAX_X);
-            int y = randomGenerator.Next(0, Constants.MAX_Y);
+            int x = Constants.MAX_X - 100;
+            int y = randNum.Next(0, Constants.MAX_Y);
 
             _position = new Point(x, y);
+
+            
+            int dx = randNum.Next(1,5);
+
+            _velocity = new Point(-dx, 0);
         }
     }
-
 }
