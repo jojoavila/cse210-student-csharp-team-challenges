@@ -95,7 +95,7 @@ namespace _07_speed
 
         public bool IsOffScreen()
         {
-            return _position.GetX() <= 0;
+            return _position.GetX() <= -10;
         }
 
     }
