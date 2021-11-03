@@ -50,6 +50,13 @@ namespace _07_speed
         // for each word removal word in words to remove
         // _words.remove(removal word)
         // random number 0-1, 
+
+        public string GetRandomWord()
+        {
+            Random randomGenerator = new Random();
+
+            return _words[randomGenerator.Next(0,_words.Count)];
+        }
     }
 
 
