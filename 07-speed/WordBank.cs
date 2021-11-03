@@ -39,7 +39,7 @@ namespace _07_speed
 
         public WordBank()
         {
-            GetRandomWord();
+
         }
         
         private void RemoveWord()
@@ -69,6 +69,7 @@ namespace _07_speed
         // for each word removalWord in words to remove
         // _words.remove(removal word)
         // random number 0-1, 
+        }
 
         public string GetRandomWord()
         {
