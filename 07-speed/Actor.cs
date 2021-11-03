@@ -85,22 +85,17 @@ namespace _07_speed
             int newX = (x + dx) % Constants.MAX_X;
             int newY = (y + dy) % Constants.MAX_Y;
 
-            if (newX < 0)
-            {
-                newX = Constants.MAX_X;
-            }
-
-            if (newY < 0)
-            {
-                newY = Constants.MAX_Y;
-            }
-
             _position = new Point(newX, newY);
         }
 
         public override string ToString()
         {
             return $"Position: ({_position.GetX()}, {_position.GetY()}), Velocity({_velocity.GetX()}, {_velocity.GetY()})";
+        }
+
+        public bool IsOffScreen()
+        {
+            return _position.GetX() <= -10;
         }
 
     }
