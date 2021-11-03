@@ -18,7 +18,7 @@ namespace _07_speed
         OutputService _outputService = new OutputService();
         //InputService _inputService = new InputService();
 
-        Food _food = new Food();
+        Word _word = new Word("asdf");
         
         ScoreBoard _scoreBoard = new ScoreBoard();
 
@@ -44,7 +44,7 @@ namespace _07_speed
         /// </summary>
         private void PrepareGame()
         {
-            _outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Snake Game", Constants.FRAME_RATE);
+            _outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Speed", Constants.FRAME_RATE);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace _07_speed
         /// </summary>
         private void DoUpdates()
         {
-
+            _word.MoveNext();
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace _07_speed
             _outputService.StartDrawing();
 
             _outputService.DrawActor(_scoreBoard);
-            _outputService.DrawActor(_food);
+            _outputService.DrawActor(_word);
 
             _outputService.EndDrawing();
         }
