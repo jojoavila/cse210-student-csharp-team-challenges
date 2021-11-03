@@ -67,6 +67,7 @@ namespace _07_speed
 
             }
             
+            // more changes
             // how to remove from list, for each word in list of words
             // if (buffer.match)
             // _wordsToRemve.add(w)
