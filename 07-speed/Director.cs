@@ -53,7 +53,9 @@ namespace _07_speed
         /// </summary>
         private void GetInputs()
         {
-            _inputService.GetInput();
+            
+            string text =_inputService.GetInput();
+            _buffer.AddInput(text);
         }
 
         /// <summary>
@@ -62,7 +64,7 @@ namespace _07_speed
         private void DoUpdates()
         {
             _word.MoveNext();
-            Console.WriteLine(_inputService.UserKeyString());
+            
         }
 
         /// <summary>
