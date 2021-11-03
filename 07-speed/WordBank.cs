@@ -10,7 +10,7 @@ namespace _07_speed
     public class WordBank
     {
 
-        public List<string> _words = new List<string> 
+        private List<string> _words = new List<string> 
         {
             "person",
             "dog",
@@ -32,24 +32,52 @@ namespace _07_speed
             "darkness",
         };
 
+        private List<string> _wordsToRemove = new List<string>{};
+
+        private string _randWord;
+
 
         public WordBank()
         {
-            
+            GetRandomWord();
         }
-
-        // make new list, wordsToRemove
-        public void RemoveWord()
+        public string GetRandomWord()
         {
+            Random randomGenerator = new Random();
+            int num = randomGenerator.Next(0,17);
+            _randWord =_words[num];
+
+            return _randWord; 
+        }
+        
+        private void RemoveWord()
+        {
+
+            foreach(string w in _words)
+            {
+                //buffer.match == word
+                if(true)
+                {
+                    _wordsToRemove.Add(w);
+                }
+            }
+            foreach(string removalWord in _wordsToRemove)
+            {
+                _words.Remove(removalWord);
+
+            }
+            
+            // more changes
             // how to remove from list, for each word in list of words
             // if (buffer.match)
             // _wordsToRemve.add(w)
-        }
+
         // add the list into a new list,
         // go through new list and remove them from the old list
-        // for each word removal word in words to remove
+        // for each word removalWord in words to remove
         // _words.remove(removal word)
-        // random number 0-1, 
+        }
+ 
     }
 
 
