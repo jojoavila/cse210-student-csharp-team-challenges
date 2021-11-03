@@ -13,15 +13,20 @@ namespace _07_speed
 
             _text = randomWord;
 
-            int x = Constants.MAX_X - 100;
-            int y = randNum.Next(0, Constants.MAX_Y);
+            int x = Constants.MAX_X;
+            int y = randNum.Next(40, Constants.MAX_Y - 40);
 
             _position = new Point(x, y);
 
             
-            int dx = randNum.Next(1,5);
+            int dx = randNum.Next(1,3);
 
             _velocity = new Point(-dx, 0);
+        }
+
+        public int GetPoints()
+        {
+            return _text.Length;
         }
     }
 }
