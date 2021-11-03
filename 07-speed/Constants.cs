@@ -16,6 +16,7 @@ namespace _07_speed
         public const int DEFAULT_TEXT_OFFSET = 4;
 
         public const int SNAKE_LENGTH = 50;
+        public const int ON_SCREEN_WORD_LIMIT = 5;
     }
 
 }
