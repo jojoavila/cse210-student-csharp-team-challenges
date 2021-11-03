@@ -18,7 +18,7 @@ namespace _07_speed
         OutputService _outputService = new OutputService();
         //InputService _inputService = new InputService();
 
-        Word _word = new Word("asdf");
+        Word _word = new Word("Hello");
         
         ScoreBoard _scoreBoard = new ScoreBoard();
 
