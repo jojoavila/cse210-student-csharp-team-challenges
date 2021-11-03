@@ -63,7 +63,9 @@ namespace _07_speed
         /// </summary>
         private void GetInputs()
         {
-            _inputService.GetInput();
+            
+            string text =_inputService.GetInput();
+            _buffer.AddInput(text);
         }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace _07_speed
         /// </summary>
         private void DoUpdates()
         {
+
             foreach (Word word in _words)
             {
                 word.MoveNext();
@@ -78,6 +81,7 @@ namespace _07_speed
 
             AddNewWords();
             WordCleanUp();
+
         }
 
         /// <summary>
