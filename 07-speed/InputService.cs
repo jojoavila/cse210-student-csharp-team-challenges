@@ -1,7 +1,7 @@
 using System;
 using Raylib_cs;
 
-namespace _07_snake
+namespace _07_speed
 {
     /// <summary>
     /// Handles all the interaction with the user input library.
@@ -14,13 +14,16 @@ namespace _07_snake
         }
 
 
-        //int keyInt = Raylib.GetKeyPressed();
-        //string keyString = "";
-        //if (keyInt != 0)
-        //{
-        // char keyChar = (char)keyInt;
-        //keyString = keyChar.ToString().ToLower();
-        //}
+        private int keyInt = Raylib.GetKeyPressed();
+        private string keyString = "";
+        public void GetInput()
+        {
+            if (keyInt != 0)
+            {
+            char keyChar = (char)keyInt;
+            keyString = keyChar.ToString().ToLower();
+            }
+        }
 
         /// <summary>
         /// Returns true if the user has attempted to close the window.
@@ -30,6 +33,11 @@ namespace _07_snake
         {
             return Raylib.WindowShouldClose();
         }
+
+       public string UserKeyString()
+       {
+           return keyString;
+       }
     }
 
 }

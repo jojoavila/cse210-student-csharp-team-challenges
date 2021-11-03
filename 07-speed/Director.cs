@@ -14,9 +14,10 @@ namespace _07_speed
     public class Director
     {
         private bool _keepPlaying = true;
+        Buffer _buffer = new Buffer();
 
         OutputService _outputService = new OutputService();
-        //InputService _inputService = new InputService();
+        InputService _inputService = new InputService();
 
         Word _word = new Word("Hello");
         
@@ -52,7 +53,7 @@ namespace _07_speed
         /// </summary>
         private void GetInputs()
         {
-
+            _inputService.GetInput();
         }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace _07_speed
         private void DoUpdates()
         {
             _word.MoveNext();
+            Console.WriteLine(_inputService.UserKeyString());
         }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace _07_speed
             _outputService.StartDrawing();
 
             _outputService.DrawActor(_scoreBoard);
+            _outputService.DrawActor(_buffer);
             _outputService.DrawActor(_word);
 
             _outputService.EndDrawing();
