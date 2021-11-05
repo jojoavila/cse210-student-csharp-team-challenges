@@ -20,12 +20,15 @@ namespace _07_speed
         InputService _inputService = new InputService();
 
         private List<Word> _words = new List<Word>();
+        private List<Word> _wordsToRemove = new List<Word>();
         
         ScoreBoard _scoreBoard = new ScoreBoard();
 
         Random _randomGenerator = new Random();
 
         WordBank _wordBank = new WordBank();
+
+        private int _keyInt;
 
         /// <summary>
         /// This method starts the game and continues running until it is finished.
@@ -63,9 +66,7 @@ namespace _07_speed
         /// </summary>
         private void GetInputs()
         {
-            
-            string text =_inputService.GetInput();
-            _buffer.AddInput(text);
+            _keyInt =_inputService.GetInput();
         }
 
         /// <summary>
@@ -73,15 +74,34 @@ namespace _07_speed
         /// </summary>
         private void DoUpdates()
         {
+            // To parse through the input to get the desired action.
+            if (_keyInt == 257)
+            {
+                CompareBufferToWord();
+                _buffer.ResetInput();
+            }
+            else if (_keyInt == 259)
+            {
+                _buffer.DeleteInputText();
+            }
+            else
+            {
+                string text = _inputService.ConvertKeyIntToString(_keyInt);
+                _buffer.AddInputText(text);
+            }
 
             foreach (Word word in _words)
             {
                 word.MoveNext();
+
+                if (word.IsOffScreen())
+                {
+                    _wordsToRemove.Add(word);
+                }
             }
 
             AddNewWords();
             WordCleanUp();
-
         }
 
         /// <summary>
@@ -102,57 +122,41 @@ namespace _07_speed
             _outputService.EndDrawing();
         }
 
-
-        /// <summary>
-        /// Returns true if the two actors are overlapping.
-        /// </summary>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <returns></returns>
-        public bool IsCollision(Actor first, Actor second)
-        {
-            int x1 = first.GetX();
-            int y1 = first.GetY();
-            int width1 = first.GetWidth();
-            int height1 = first.GetHeight();
-
-            Raylib_cs.Rectangle rectangle1
-                = new Raylib_cs.Rectangle(x1, y1, width1, height1);
-
-            int x2 = second.GetX();
-            int y2 = second.GetY();
-            int width2 = second.GetWidth();
-            int height2 = second.GetHeight();
-
-            Raylib_cs.Rectangle rectangle2
-                = new Raylib_cs.Rectangle(x2, y2, width2, height2);
-
-            return Raylib.CheckCollisionRecs(rectangle1, rectangle2);
-        }
-
         public void WordCleanUp()
         {
-            List<Word> wordsToRemove = new List<Word>();
+            // foreach (Word word in _words)
+            // {
+                
+            // }
 
-            foreach (Word word in _words)
-            {
-                if (word.IsOffScreen())
-                {
-                    wordsToRemove.Add(word);
-                }
-            }
-
-            foreach (Word word in wordsToRemove)
+            foreach (Word word in _wordsToRemove)
             {
                 _words.Remove(word);   
             }
 
-            wordsToRemove.Clear();
+            _wordsToRemove.Clear();
         }
 
         ///<summary>
-        ///
-        ///
+        /// Compares the Buffer string all Word objects
+        /// currently on the screen. If they match, the
+        /// onscreen word is added to the list of Word
+        /// objects to be removed.
+        ///</summary>
+        public void CompareBufferToWord()
+        {
+            foreach (Word word in _words)
+            {
+                if (word.GetText() == _buffer.GetBufferText())
+                {
+                    _wordsToRemove.Add(word);
+                }
+            }
+        }
+
+        ///<summary>
+        /// Will add new Word objects to the Word object List
+        /// if there are less words on screen than the limit
         ///</summary>
         public void AddNewWords()
         {
