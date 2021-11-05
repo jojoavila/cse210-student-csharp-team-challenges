@@ -64,8 +64,17 @@ namespace _07_speed
         private void GetInputs()
         {
             
+            
+            if (Raylib.IsKeyDown(Raylib_cs.KeyboardKey.KEY_ENTER))
+            {
+                string text = "";
+                _buffer.CleaningBuffer(text);
+            }
+            else   
+            {    
             string text =_inputService.GetInput();
             _buffer.AddInput(text);
+            }
         }
 
         /// <summary>

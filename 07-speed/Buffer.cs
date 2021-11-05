@@ -1,4 +1,5 @@
 using System;
+using Raylib_cs;
 namespace _07_speed
 {
     class Buffer : Actor
@@ -32,6 +33,11 @@ namespace _07_speed
         public void AddInput(string input2)
         {
             _input = _input + input2;
+            UpdateText();
+        }
+        public void CleaningBuffer(string input)
+        {
+            _input = input;
             UpdateText();
         }
     }
