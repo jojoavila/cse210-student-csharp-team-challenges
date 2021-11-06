@@ -1,4 +1,5 @@
 using System;
+using Raylib_cs;
 namespace _07_speed
 {
     class Buffer : Actor
