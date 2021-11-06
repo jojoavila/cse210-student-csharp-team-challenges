@@ -39,15 +39,7 @@ namespace _07_speed
 
         public WordBank()
         {
-            GetRandomWord();
-        }
-        public string GetRandomWord()
-        {
-            Random randomGenerator = new Random();
-            int num = randomGenerator.Next(0,17);
-            _randWord =_words[num];
 
-            return _randWord; 
         }
         
         private void RemoveWord()
@@ -76,9 +68,14 @@ namespace _07_speed
         // go through new list and remove them from the old list
         // for each word removalWord in words to remove
         // _words.remove(removal word)
+        // random number 0-1, 
         }
- 
+
+        public string GetRandomWord()
+        {
+            Random randomGenerator = new Random();
+
+            return _words[randomGenerator.Next(0,_words.Count)];
+        }
     }
-
-
 }

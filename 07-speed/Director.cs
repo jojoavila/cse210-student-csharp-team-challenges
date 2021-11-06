@@ -19,9 +19,13 @@ namespace _07_speed
         OutputService _outputService = new OutputService();
         InputService _inputService = new InputService();
 
-        Word _word = new Word("Hello");
+        private List<Word> _words = new List<Word>();
         
         ScoreBoard _scoreBoard = new ScoreBoard();
+
+        Random _randomGenerator = new Random();
+
+        WordBank _wordBank = new WordBank();
 
         /// <summary>
         /// This method starts the game and continues running until it is finished.
@@ -46,6 +50,12 @@ namespace _07_speed
         private void PrepareGame()
         {
             _outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Speed", Constants.FRAME_RATE);
+
+            for (int i = 0; i < _randomGenerator.Next(2,5); i++)
+            {
+                Word w = new Word(_wordBank.GetRandomWord());
+                _words.Add(w);
+            }
         }
 
         /// <summary>
@@ -53,7 +63,18 @@ namespace _07_speed
         /// </summary>
         private void GetInputs()
         {
-            _inputService.GetInput();
+            
+            
+            if (Raylib.IsKeyDown(Raylib_cs.KeyboardKey.KEY_ENTER))
+            {
+                string text = "";
+                _buffer.CleaningBuffer(text);
+            }
+            else   
+            {    
+            string text =_inputService.GetInput();
+            _buffer.AddInput(text);
+            }
         }
 
         /// <summary>
@@ -61,8 +82,15 @@ namespace _07_speed
         /// </summary>
         private void DoUpdates()
         {
-            _word.MoveNext();
-            Console.WriteLine(_inputService.UserKeyString());
+
+            foreach (Word word in _words)
+            {
+                word.MoveNext();
+            }
+
+            AddNewWords();
+            WordCleanUp();
+
         }
 
         /// <summary>
@@ -74,8 +102,12 @@ namespace _07_speed
 
             _outputService.DrawActor(_scoreBoard);
             _outputService.DrawActor(_buffer);
-            _outputService.DrawActor(_word);
-
+          
+            foreach (Word word in _words)
+            {
+                _outputService.DrawActor(word);
+            }
+          
             _outputService.EndDrawing();
         }
 
@@ -107,6 +139,45 @@ namespace _07_speed
             return Raylib.CheckCollisionRecs(rectangle1, rectangle2);
         }
 
+        public void WordCleanUp()
+        {
+            List<Word> wordsToRemove = new List<Word>();
+
+            foreach (Word word in _words)
+            {
+                if (word.IsOffScreen())
+                {
+                    wordsToRemove.Add(word);
+                }
+            }
+
+            foreach (Word word in wordsToRemove)
+            {
+                _words.Remove(word);   
+            }
+
+            wordsToRemove.Clear();
+        }
+
+        ///<summary>
+        ///
+        ///
+        ///</summary>
+        public void AddNewWords()
+        {
+            if (_words.Count < Constants.ON_SCREEN_WORD_LIMIT)
+            {
+                double conditionNum = _randomGenerator.NextDouble();
+                // Console.WriteLine($"Random Number: {conditionNum}");
+
+                if (conditionNum > .98)
+                {
+                    Word w = new Word(_wordBank.GetRandomWord());
+                    _words.Add(w);
+                }
+            }
+        }
 
     }
+
 }
