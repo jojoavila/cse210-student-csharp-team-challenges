@@ -79,6 +79,7 @@ namespace _07_speed
             {
                 CompareBufferToWord();
                 _buffer.ResetInput();
+                
             }
             else if (_keyInt == 259)
             {
@@ -141,7 +142,8 @@ namespace _07_speed
         /// Compares the Buffer string all Word objects
         /// currently on the screen. If they match, the
         /// onscreen word is added to the list of Word
-        /// objects to be removed.
+        /// objects to be removed; it also add the 
+        /// point of the words that match.
         ///</summary>
         public void CompareBufferToWord()
         {
@@ -149,6 +151,8 @@ namespace _07_speed
             {
                 if (word.GetText() == _buffer.GetBufferText())
                 {
+                    int points = word.GetPoints();
+                    _scoreBoard.AddPoints(points);
                     _wordsToRemove.Add(word);
                 }
             }
