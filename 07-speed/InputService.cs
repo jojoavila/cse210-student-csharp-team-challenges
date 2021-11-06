@@ -8,25 +8,29 @@ namespace _07_speed
     /// </summary>
     public class InputService
     {
-        // public InputService()
-        // {
-
-        // }
-
-        // private string keyString = "";
-        
-        
-        public string GetInput()
+        /// <summary>
+        /// Will get user input key code.
+        /// </summary>
+        public int GetInput()
         {
-            int keyInt = Raylib.GetKeyPressed();
-            string keyString = "";   
+            return Raylib.GetKeyPressed();
+        }
+
+        /// <summary>
+        /// Converts an input key code to
+        /// it's corresponding string
+        /// </summary>
+        public string ConvertKeyIntToString(int keyInt)
+        {
+            string keyString = "";
+            
             if (keyInt != 0)
             {
                 char keyChar = (char)keyInt;
                 keyString = keyChar.ToString().ToLower();
             }
-            return keyString;
 
+            return keyString;
         }
 
         /// <summary>
@@ -37,11 +41,5 @@ namespace _07_speed
         {
             return Raylib.WindowShouldClose();
         }
-
-    //    public string UserKeyString()
-    //    {
-    //        return keyString;
-    //    }
     }
-
 }
