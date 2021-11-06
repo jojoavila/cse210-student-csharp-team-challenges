@@ -97,6 +97,8 @@ namespace _07_speed
 
                 if (word.IsOffScreen())
                 {
+                    int points = - word.GetPoints();
+                    _scoreBoard.AddPoints(points); 
                     _wordsToRemove.Add(word);
                 }
             }
