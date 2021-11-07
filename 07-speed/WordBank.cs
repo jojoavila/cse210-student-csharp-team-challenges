@@ -22,10 +22,6 @@ namespace _07_speed
         /// </summary>
         private void InitializeWordList()
         {
-            // This may seem redundant now, but if it is
-            // decided later on to pull a list of words
-            // from a file then this is way we'll do that.
-            // For now this function is just a place holder.
             List<string> wordList = new List<string>
             {
                 "person",
@@ -51,28 +47,10 @@ namespace _07_speed
             _wordList = wordList;
         }
 
-        // The Word object is suppose to be removed from the
-        // Word object List declared in the Director class, not
-        // a word from the list of available words to choose from.
-        //
-        // private void RemoveWord()
-        // {
-
-        //     foreach(string w in _words)
-        //     {
-        //         //buffer.match == word
-        //         if(true)
-        //         {
-        //             _wordsToRemove.Add(w);
-        //         }
-        //     }
-        //     foreach(string removalWord in _wordsToRemove)
-        //     {
-        //         _words.Remove(removalWord);
-
-        //     }
-        // }
-
+        /// <summary>
+        /// Returns a random word from the list stored in
+        /// WordBank.
+        /// </summary>
         public string GetRandomWord()
         {
             Random randomGenerator = new Random();
