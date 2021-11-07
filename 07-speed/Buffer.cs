@@ -8,6 +8,7 @@ namespace _07_speed
         OutputService _outputService = new OutputService();
 
         private string _input = "";
+
         public Buffer()
         {
             _position = new Point(1, Constants.MAX_Y - 25);
@@ -17,6 +18,9 @@ namespace _07_speed
             UpdateText();
         }
 
+        /// <summary>
+        /// Will refresh the displayed text when called.
+        /// </summary>
         private void UpdateText()
         {
             _text = $"Buffer: {_input}";
