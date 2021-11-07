@@ -14,7 +14,8 @@ namespace _07_speed
     public class Director
     {
         private bool _keepPlaying = true;
-        Buffer _buffer = new Buffer();
+        Random _randomGenerator = new Random();
+        private int _keyInt;
 
         OutputService _outputService = new OutputService();
         InputService _inputService = new InputService();
@@ -23,12 +24,8 @@ namespace _07_speed
         private List<Word> _wordsToRemove = new List<Word>();
         
         ScoreBoard _scoreBoard = new ScoreBoard();
-
-        Random _randomGenerator = new Random();
-
+        Buffer _buffer = new Buffer();
         WordBank _wordBank = new WordBank();
-
-        private int _keyInt;
 
         /// <summary>
         /// This method starts the game and continues running until it is finished.
@@ -54,7 +51,7 @@ namespace _07_speed
         {
             _outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Speed", Constants.FRAME_RATE);
 
-            for (int i = 0; i < _randomGenerator.Next(2,5); i++)
+            for (int i = 0; i < _randomGenerator.Next(5,8); i++)
             {
                 Word w = new Word(_wordBank.GetRandomWord());
                 _words.Add(w);
@@ -75,12 +72,14 @@ namespace _07_speed
         private void DoUpdates()
         {
             // To parse through the input to get the desired action.
+            // 257 is the key code for "Enter"
             if (_keyInt == 257)
             {
                 CompareBufferToWord();
                 _buffer.ResetInput();
                 
             }
+            // 259 is the key code for "Backspace"
             else if (_keyInt == 259)
             {
                 _buffer.DeleteInputText();
@@ -97,14 +96,19 @@ namespace _07_speed
 
                 if (word.IsOffScreen())
                 {
-                    int points = - word.GetPoints();
-                    _scoreBoard.AddPoints(points); 
+                    int points = word.GetPoints();
+                    _scoreBoard.RemovePoints(points); 
                     _wordsToRemove.Add(word);
                 }
             }
 
-            AddNewWords();
             WordCleanUp();
+            AddNewWords();
+
+            if (_scoreBoard.GetPoints() < -50)
+            {
+                _keepPlaying = false;
+            }
         }
 
         /// <summary>
@@ -127,11 +131,6 @@ namespace _07_speed
 
         public void WordCleanUp()
         {
-            // foreach (Word word in _words)
-            // {
-                
-            // }
-
             foreach (Word word in _wordsToRemove)
             {
                 _words.Remove(word);   
