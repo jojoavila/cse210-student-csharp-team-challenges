@@ -14,31 +14,47 @@ namespace _07_speed
             _width = 0;
             _height = 0;
 
-            // _outputService.DrawText(1, Constants.MAX_Y - 25, $"Buffer: {_text}", true);
             UpdateText();
         }
 
         private void UpdateText()
         {
-            
             _text = $"Buffer: {_input}";
-
         }
 
-        // public void DisplayBuffer()
-        // {
-        //     _text = $"Buffer: {_inputService.UserKeyString()}";
-        // }
-
-        public void AddInput(string input2)
+        /// <summary>
+        /// Will add a key press to the string displayed
+        /// on Buffer.
+        /// </summary>
+        public void AddInputText(string text)
         {
-            _input = _input + input2;
+            _input = _input + text;
             UpdateText();
         }
-        public void CleaningBuffer(string input)
+
+        /// <summary>
+        /// Will delete a character from the end of the
+        /// string displayed on Buffer.
+        /// </summary>
+        public void DeleteInputText()
         {
-            _input = input;
+            _input = _input.Remove(_input.Length - 1);
             UpdateText();
+        }
+
+        /// <summary>
+        /// Will reset the string that is displayed
+        /// on Buffer.
+        /// </summary>
+        public void ResetInput()
+        {
+            _input = "";
+            UpdateText();
+        }
+
+        public string GetBufferText()
+        {
+            return _input;
         }
     }
 }

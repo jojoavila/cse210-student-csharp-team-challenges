@@ -9,21 +9,24 @@ namespace _07_speed
     {
         public Word(string randomWord)
         {
-            Random randNum = new Random();
-
+            // Set random word as text
             _text = randomWord;
 
+            // Initialize position
+            Random randNum = new Random();
             int x = Constants.MAX_X;
             int y = randNum.Next(40, Constants.MAX_Y - 40);
-
             _position = new Point(x, y);
 
-            
+            // Inisitalize velocity
             int dx = randNum.Next(1,3);
-
             _velocity = new Point(-dx, 0);
         }
 
+        /// <summary>
+        ///
+        ///
+        /// </summary>
         public int GetPoints()
         {
             return _text.Length;
