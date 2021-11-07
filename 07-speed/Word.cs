@@ -7,6 +7,12 @@ namespace _07_speed
     /// </summary>
     class Word : Actor
     {
+
+        
+        /// <summary>
+        /// Takes in a string, makes the _text from the actor class equal to the randWord string.
+        /// Creates a random position and velocity for the word actor.
+        /// </summary>
         public Word(string randomWord)
         {
             // Set random word as text
@@ -24,8 +30,7 @@ namespace _07_speed
         }
 
         /// <summary>
-        ///
-        ///
+        /// Returns the word's length to determine the amount of points it's worth.
         /// </summary>
         public int GetPoints()
         {

@@ -10,7 +10,10 @@ namespace _07_speed
     public class WordBank
     {
         private List<string> _wordList = new List<string>();
-
+        
+        /// <summary>
+        /// Initializes the word list
+        /// </summary>
         public WordBank()
         {
             InitializeWordList();
@@ -73,6 +76,9 @@ namespace _07_speed
         //     }
         // }
 
+        /// <summary>
+        /// Returns a random word pulled from the list of strings based on their index
+        /// </summary>
         public string GetRandomWord()
         {
             Random randomGenerator = new Random();

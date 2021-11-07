@@ -62,7 +62,7 @@ namespace _07_speed
         }
 
         /// <summary>
-        /// Get any input needed from the user.
+        /// Gets any input needed from the user.
         /// </summary>
         private void GetInputs()
         {
@@ -125,6 +125,10 @@ namespace _07_speed
             _outputService.EndDrawing();
         }
 
+        ///<summary>
+        /// This function will clear the words that are typed in by the user.
+        /// It will take from the _wordsToRemove list and apply it to  the screen.
+        ///</summary>
         public void WordCleanUp()
         {
             // foreach (Word word in _words)

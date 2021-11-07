@@ -9,6 +9,10 @@ namespace _07_speed
     {
         private int _points = 0;
 
+        ///<summary>
+        /// Sets a position, width and height for the scoreboard on the screen.
+        /// Runs the UpdateText function.
+        ///</summary>
         public ScoreBoard()
         {
             _position = new Point(1, 0);

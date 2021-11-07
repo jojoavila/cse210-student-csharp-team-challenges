@@ -12,17 +12,26 @@ namespace _07_speed
         private int _x;
         private int _y;
 
+        /// <summary>
+        /// Accepts a x and y coordinate value and updates the position of X and Y.
+        /// </summary>
         public Point(int x, int y)
         {
             _x = x;
             _y = y;
         }
 
+        /// <summary>
+        /// Returns the X value of the point.
+        /// </summary>
         public int GetX()
         {
             return _x;
         }
 
+        /// <summary>
+        /// Returns the Y value of the point.
+        /// </summary>
         public int GetY()
         {
             return _y;
@@ -65,8 +74,12 @@ namespace _07_speed
                    _x == point._x &&
                    _y == point._y;
         }
-
+ 
+        /// <summary>
+        /// 
         // If you ever override the Equals function, you should also override the GetHashCode function
+        /// Returns the hascode and combines the X and Y values.
+        ///</summary>
         public override int GetHashCode()
         {
             return HashCode.Combine(_x, _y);
