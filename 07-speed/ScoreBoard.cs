@@ -17,6 +17,10 @@ namespace _07_speed
             
             UpdateText();
         }
+        
+        /// update scoreboard
+        /// Take the change the value
+
 
         /// <summary>
         /// Increments the points by the amount specified and updates the

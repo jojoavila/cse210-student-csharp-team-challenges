@@ -28,5 +28,6 @@ namespace _07_speed
         {
             return _text.Length;
         }
+
     }
 }
