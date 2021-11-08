@@ -93,11 +93,13 @@ namespace _07_speed
             return $"Position: ({_position.GetX()}, {_position.GetY()}), Velocity({_velocity.GetX()}, {_velocity.GetY()})";
         }
 
+        /// <summary>
+        /// Checks if an actor reaches a specific x point in the
+        /// drawing.
+        /// </summary>
         public bool IsOffScreen()
         {
             return _position.GetX() <= -10;
         }
-
     }
-
 }

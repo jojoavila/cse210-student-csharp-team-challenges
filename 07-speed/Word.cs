@@ -23,10 +23,6 @@ namespace _07_speed
             _velocity = new Point(-dx, 0);
         }
 
-        /// <summary>
-        ///
-        ///
-        /// </summary>
         public int GetPoints()
         {
             return _text.Length;

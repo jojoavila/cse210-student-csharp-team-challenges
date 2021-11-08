@@ -30,6 +30,15 @@ namespace _07_speed
         }
 
         /// <summary>
+        /// Removes points worth half the amount of characters in a word.
+        /// </summary>
+        public void RemovePoints(int points)
+        {
+            _points -= points / 2;
+            UpdateText();
+        }
+
+        /// <summary>
         /// Updates the text to reflect the new points amount.
         /// This should be called whenever the points are updated.
         /// </summary>
@@ -37,6 +46,10 @@ namespace _07_speed
         {
             _text = $"Score: {_points}";
         }
-    }
 
+        public int GetPoints()
+        {
+            return _points;
+        }
+    }
 }
